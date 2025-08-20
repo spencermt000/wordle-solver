@@ -165,7 +165,14 @@ def main():
     ap.add_argument("--episodes", type=int, default=200, help="Episodes per starting word")
     ap.add_argument("--targets", choices=["answers", "all"], default="answers", help="Target set")
     ap.add_argument("--guesses", choices=["answers", "all"], default="answers", help="Guess set to evaluate")
-    ap.add_argument("--first", nargs="*", help="Specific starting words to evaluate (space-separated)")
+    ap.add_argument(
+        "--first", nargs="*", default=None,
+        help="Explicit list of starting guesses to test"
+    )
+    ap.add_argument(
+        "--first-file", type=str, default=None,
+        help="Path to a text file of starting guesses (one per line)"
+    )
     ap.add_argument("--limit-guesses", type=int, default=None, help="Evaluate only the first K guesses (for speed)")
     ap.add_argument("--policy", choices=["heuristic", "random"], default="heuristic", help="Policy after first guess")
     ap.add_argument("--seed", type=int, default=0, help="RNG seed for target sampling")
@@ -185,6 +192,9 @@ def main():
     # Guesses pool
     if args.first:
         guesses = [w.lower() for w in args.first]
+    elif args.first_file:
+        with open(args.first_file, "r", encoding="utf-8") as f:
+            guesses = [line.strip().lower() for line in f if line.strip()]
     elif args.guesses == "answers":
         guesses = load_answer_vocab(args.csv).words() if args.targets == "all" else targets
     else:
