@@ -60,3 +60,40 @@ How this ties into your “Starting Word Theory”
 	•	Monte Carlo whole-game sims validate theory in practice: run the environment end-to-end to see solve rate and steps when you actually play the game with a greedy policy after the opener.  
 	•	Your earlier results: analytics said raise/irate/… are top; whole-game sims favored slate on average steps—great example that “best first split” and “best full-game outcome” can differ slightly depending on second-move strategy.  
 <!-- COMMENT: Suggest adding an explicit example snippet of results or output here to illustrate these points more concretely -->
+
+# Example of Solver:
+(venv) spencerthompson@MacBook-Pro wordle % python -m solver.solver_cli --csv word_list.csv
+
+Wordle helper — after EACH guess you make in the game, paste the feedback here.
+Accepted: g/y/b, 2/1/0, or [0,1,2,2,0]. Type 'quit' to exit.
+
+Enter your guess word: vails
+Feedback for that guess (g/y/b or 2/1/0 or [..]): [0,1,0,1,0]
+Remaining candidates: 119
+Top suggestions:
+  1. alert  (exp_rem=7.52, worst=15, H=4.321)
+  2. clear  (exp_rem=7.67, worst=18, H=4.373)
+  3. pearl  (exp_rem=7.81, worst=15, H=4.369)
+Type your next guess (or press Enter to use #1): alert
+Feedback (g/y/b or 2/1/0 or [..]): [1,2,0,0,0]
+Remaining candidates: 15
+Top suggestions:
+  1. black  (exp_rem=1.80, worst=3, H=3.190)
+  2. clank  (exp_rem=1.80, worst=3, H=3.190)
+  3. blank  (exp_rem=2.07, worst=3, H=3.006)
+Type your next guess (or press Enter to use #1): black
+Feedback (g/y/b or 2/1/0 or [..]): [0,2,2,0,0]
+Remaining candidates: 3
+Candidates: gland, llama, plaza
+Top suggestions:
+  1. llama  (exp_rem=1.00, worst=1, H=1.585)
+  2. plaza  (exp_rem=1.00, worst=1, H=1.585)
+  3. gland  (exp_rem=1.67, worst=2, H=0.918)
+Type your next guess (or press Enter to use #1): gland
+Feedback (g/y/b or 2/1/0 or [..]): [0,2,2,0,0]
+Remaining candidates: 2
+Candidates: llama, plaza
+Top suggestions:
+  1. llama  (exp_rem=1.00, worst=1, H=1.000)
+  2. plaza  (exp_rem=1.00, worst=1, H=1.000)
+Type your next guess (or press Enter to use #1): 
