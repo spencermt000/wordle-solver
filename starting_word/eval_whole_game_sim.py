@@ -178,7 +178,7 @@ def main():
     ap.add_argument("--seed", type=int, default=0, help="RNG seed for target sampling")
     ap.add_argument("--out", default="whole_game_results.csv", help="Output CSV path")
     ap.add_argument("--top", type=int, default=10, help="How many top rows to print")
-    ap.add_argument("--progress", action=argparse.BooleanOptionalAction, default=True, help="Show progress (use --no-progress to disable)")
+    ap.add_argument("--progress", action="store_true", default=True, help="Show progress (enabled by default)")
     args = ap.parse_args()
 
     # Load vocab/targets
